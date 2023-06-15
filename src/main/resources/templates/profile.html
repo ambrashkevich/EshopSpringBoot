@@ -9,8 +9,6 @@
 <div class="card w-25 m-1" type="user">
   <p3>Welcome, <b class="font-italic" th:text="${user.getEmail()}"></b>!</p3>
   <p class="text-center">Ваш пароль: <b class="font-italic" th:text="${user.getPassword()}"></b></p>
-  <p class="text-center">Ваш пароль: <b class="font-italic" th:text="${user.getName()}"></b></p>
-  <p class="text-center">Ваш пароль: <b class="font-italic" th:text="${user.getSurname()}"></b></p>
 </div>
 <a th:href="@{'/logout'}">
   <button id="redirect" type="submit">Exit</button>
