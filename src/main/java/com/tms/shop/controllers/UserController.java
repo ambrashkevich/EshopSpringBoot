@@ -2,12 +2,11 @@ package com.tms.shop.controllers;
 
 import com.tms.shop.entities.User;
 import com.tms.shop.repositories.UserRepository;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -23,11 +22,13 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@Valid User user, BindingResult result, Model model) {
-        if (result.hasErrors()) {
+    public String registerUser(@ModelAttribute("user") User user, Model model) {
+        String email = user.getEmail();
+        User existingUser = userRepository.findByEmail(email);
+        if (existingUser != null) {
+            model.addAttribute("error", "Email already exists");
             return "register";
         }
-
         userRepository.save(user);
         return "redirect:/register?success";
     }
