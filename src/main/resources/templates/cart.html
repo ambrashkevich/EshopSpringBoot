@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Categories</title>
+  <th:block th:insert="~{/libs}"/>
+  <th:block th:insert="~{/header}"/>
+  <script>
+    function productDeletedToShoppingCartMsg() {
+      window.confirm("Продукт удален из корзины!");
+    }
+  </script>
+</head>
+<body>
+<h2>Корзина</h2>
+
+<div class="container-fluid mb-4" th:each="product : ${cart.getProducts()}">
+  <div class="card w-25 m-1" type="product">
+    <div class="card-body">
+      <img class="card-img" style="width:200px;height:250px"
+           th:src="@{'/images/' + ${product.getImageName()}}"></a>
+      <h4 class="card-title" th:text="${product.getName()}"></h4>
+      <h4 class="card-title" th:text="${product.getDescription()}"></h4>
+      <h4 class="card-title" th:text="${product.getPrice()}"></h4>
+      <br>
+      <a th:href="@{/cart/delete(product_id=${product.getId()}, name=${product.getName()})}">
+        <button id="deleteProductToCart" type="submit" onclick="productDeletedToShoppingCartMsg()">Удалить</button>
+      </a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
