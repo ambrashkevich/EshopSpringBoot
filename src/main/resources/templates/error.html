@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Categories</title>
+  <th:block th:insert="~{/libs}"/>
+</head>
+<body>
+<h2>Error</h2>
+
+<div class="container-fluid mb-4">
+  <h1 class="alert alert-danger" role="alert" th:text="${error}"></h1>
+  <a th:href="@{/login}">
+    <button type="button" class="btn btn-danger">Try again...</button>
+  </a>
+</div>
+</body>
+</html>
