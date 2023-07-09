@@ -3,23 +3,62 @@
 <head>
   <title>Categories</title>
   <meta charset="utf-8">
-  <th:block th:insert="~{/libs}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    .row {
+      display: flex;
+      justify-content: center;
+    }
+    .card {
+      width: 200px;
+      height: 250px;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card-body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-img {
+      width: 150px;
+      height: 120px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-<th:block th:insert="~{/header}"/>
+<th:block th:insert="~{/elements/header}"/>
 <br>
 <h2>Popular categories</h2>
 <div class="container-fluid mb-4">
   <div class="row">
-    <div class="card w-25 m-1" type="category" th:each="c : ${categories}"><br>
+    <div class="card m-1" type="category" th:each="c : ${categories}">
+      <br>
       <div class="card-body">
         <a th:href="@{'/category/' + ${c.id}}">
-          <img class="card-img" style="width:150px;height:120px"
-               th:src="@{'/images/' + ${c.imageName}}"
-               alt th:text="${c.name}"></a>
+          <img class="card-img" th:src="@{'/images/' + ${c.imageName}}" alt th:text="${c.name}">
+        </a>
       </div>
     </div>
   </div>
 </div>
+<div th:block th:insert="~{elements/footer.html}"></div>
 </body>
 </html>
