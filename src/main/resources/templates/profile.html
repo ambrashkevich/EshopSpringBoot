@@ -10,7 +10,7 @@
   <p3>Welcome, <b class="font-italic" th:text="${user.getEmail()}"></b>!</p3>
   <p class="text-center">Ваш пароль: <b class="font-italic" th:text="${user.getPassword()}"></b></p>
 </div>
-<a th:href="@{'/logout'}">
+<a th:href="@{'/auth/logout'}">
   <button id="redirect" type="submit">Exit</button>
 </a>
 </body>

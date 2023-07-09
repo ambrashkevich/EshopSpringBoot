@@ -15,15 +15,16 @@ import org.springframework.web.servlet.ModelAndView;
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
+
     private final ProductRepository productRepository;
 
     @Override
-    public List<Product> getProductsByCategoryId(int categoryId) {
+    public List<Product> getProductsByCategoryId(Long categoryId) {
         return productRepository.findAllByCategory_Id(categoryId);
     }
 
     @Override
-    public ModelAndView getProductData(int id) {
+    public ModelAndView getProductData(Long id) {
         ModelMap modelMap = new ModelMap();
         Product product = productRepository.findById(id);
         if (Optional.ofNullable(product).isPresent()) {

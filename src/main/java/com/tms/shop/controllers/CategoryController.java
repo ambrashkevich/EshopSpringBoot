@@ -16,7 +16,7 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping("/{id}")
-    public ModelAndView openCategoryPage(@PathVariable int id) {
+    public ModelAndView openCategoryPage(@PathVariable Long id) {
         return categoryService.getCategoryData(id);
     }
 }

@@ -6,10 +6,11 @@
   <title>User Registration</title>
 </head>
 <body>
+<div class="loader">loading</div>
 <div class="container">
   <div class="col-md-8 offset-md-4">
     <h2>Register</h2>
-    <form th:action="@{/register}" th:object="${user}" method="post">
+    <form th:action="@{/auth/register}" th:object="${user}" method="post">
       <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" class="form-control w-25" id="name" placeholder="Enter username" name="name">
@@ -28,10 +29,10 @@
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" class="form-control w-25" id="email" placeholder="Enter email" name="email">
-        <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{email}"></div>
+        <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
       </div>
-      <button type="submit" class="btn btn-primary">Login</button>
-      <p class="message">Registered?<a href="/login">Log in</a></p>
+      <button type="submit"  class="btn btn-primary">Register</button>
+      <p class="message">Registered?<a href="/auth/login">Log in</a></p>
     </form>
     <div th:if="${param.success}">
       User registered successfully!

@@ -8,5 +8,5 @@ public interface CategoryService {
 
     List<Category> getCategories();
 
-    ModelAndView getCategoryData(int id);
+    ModelAndView getCategoryData(Long id);
 }

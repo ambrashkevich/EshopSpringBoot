@@ -10,8 +10,8 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
 
     List<Product> findAll();
 
-    Product findById(int id);
+    Product findById(Long id);
 
-    List<Product> findAllByCategory_Id(int id);
+    List<Product> findAllByCategory_Id(Long id);
 
 }

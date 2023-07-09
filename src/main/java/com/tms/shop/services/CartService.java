@@ -16,7 +16,7 @@ public class CartService {
 
     private final ProductRepository productRepository;
 
-    public ModelAndView addProductToCart(int productId, Cart shopCart) {
+    public ModelAndView addProductToCart(Long productId, Cart shopCart) {
         ModelMap modelParams = new ModelMap();
         Product product = productRepository.findById(productId);
         shopCart.addProduct(product);
@@ -25,7 +25,7 @@ public class CartService {
         return new ModelAndView(CART_PAGE, modelParams);
     }
 
-    public ModelAndView deleteProductFromCart(int productId, Cart shopCart) {
+    public ModelAndView deleteProductFromCart(Long productId, Cart shopCart) {
         Product product = productRepository.findById(productId);
         shopCart.deleteProduct(product);
         return new ModelAndView(CART_PAGE);

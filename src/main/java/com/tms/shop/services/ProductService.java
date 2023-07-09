@@ -6,7 +6,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface ProductService {
 
-    List<Product> getProductsByCategoryId(int categoryId);
+    List<Product> getProductsByCategoryId(Long categoryId);
 
-    public ModelAndView getProductData(int id);
+    public ModelAndView getProductData(Long id);
+
 }

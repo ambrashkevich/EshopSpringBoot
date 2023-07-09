@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface CategoryRepository extends CrudRepository<Category, Integer> {
     List<Category> findAll();
 
-    Category findCategoryById(int id);
+    Category findCategoryById(Long id);
 
 }

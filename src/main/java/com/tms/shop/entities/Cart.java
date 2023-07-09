@@ -9,6 +9,8 @@ import lombok.Data;
 public class Cart implements Serializable {
 
     private List<Product> products = new ArrayList<>();
+    private int totalPrice = 0;
+
 
     public void addProduct(Product productId) {
         products.add(productId);
