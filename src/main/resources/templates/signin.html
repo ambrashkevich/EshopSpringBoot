@@ -1,31 +1,160 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://thymeleaf.org ">
+<html lang="en">
 <head>
-  <title>Login form example</title>
-  <meta charset="utf-8">
-  <th:block th:insert="~{/libs}"/>
+  <title>Login Form</title>
+  <style>
+    /* Add your custom styles here */
+    body {
+      background-color: #f7f7f7;
+      font-family: Arial, sans-serif;
+    }
+
+    .form-container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      font-family: Arial, sans-serif;
+      animation: fade-in 1s ease-in-out;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      outline: none;
+      border-color: #6c63ff;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #6c63ff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #524dff;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 20px;
+      color: #666;
+    }
+
+    .message a {
+      color: #6c63ff;
+      text-decoration: none;
+    }
+
+    .message a:hover {
+      text-decoration: underline;
+    }
+
+    .loading-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .loading-spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
-
-<div class="container">
-  <div class="col-md-8 offset-md-4">
-    <h2>Login</h2>
-    <p>Please, enter your credentials</p>
-    <form method="POST" th:action="@{/auth/login}" th:object="${user}">
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="text" class="form-control w-25" id="email" placeholder="Enter email" name="email">
-        <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
-      </div>
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" class="form-control w-25" id="password" placeholder="Enter password" name="password">
-        <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-      </div>
-      <button type="submit" class="btn btn-primary">Login</button>
-      <p class="message">Not registered? <a href="/auth/register">Create an account</a></p>
-    </form>
-  </div>
+<div class="form-container">
+  <h2>Login</h2>
+  <form method="POST" action="/auth/login">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" id="email" placeholder="Enter email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" placeholder="Enter password" name="password">
+    </div>
+    <button type="submit" class="btn" onclick="showLoading()">Login</button>
+    <p class="message">Not registered? <a href="/auth/register">Create an account</a></p>
+  </form>
 </div>
+<div class="loading-overlay">
+  <div class="loading-spinner"></div>
+</div>
+<script>
+  function showLoading() {
+    document.querySelector('.loading-overlay').style.display = 'flex';
+    setTimeout(function () {
+      hideLoading();
+    }, 3000);
+  }
+
+  function hideLoading() {
+    document.querySelector('.loading-overlay').style.display = 'none';
+  }
+</script>
 </body>
 </html>

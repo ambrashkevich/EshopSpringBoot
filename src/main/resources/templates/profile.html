@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>profile</title>
-  <th:block th:insert="~{/libs}"/>
+  <title>Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Your+Custom+Font&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <th:block th:insert="~{/header}"/>
 </head>
 <body>
-<div class="card w-25 m-1" type="user">
+<div class="card w-25 m-1 animate__animated animate__fadeIn" type="user">
   <p3>Welcome, <b class="font-italic" th:text="${user.getEmail()}"></b>!</p3>
-  <p class="text-center">Ваш пароль: <b class="font-italic" th:text="${user.getPassword()}"></b></p>
+  <p class="text-center">Your password: <b class="font-italic" th:text="${user.getPassword()}"></b></p>
 </div>
 <a th:href="@{'/auth/logout'}">
   <button id="redirect" type="submit">Exit</button>
 </a>
+<div th:block th:insert="~{elements/footer.html}"></div>
 </body>
 </html>

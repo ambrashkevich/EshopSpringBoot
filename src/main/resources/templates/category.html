@@ -2,24 +2,69 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Categories</title>
-  <th:block th:insert="~{/libs}"/>
-  <th:block th:insert="~{/header}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    .category-title {
+      font-family: "Arial", sans-serif;
+      font-size: 24px;
+      color: #333;
+      text-align: center;
+      margin-top: 30px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .product-card {
+      animation: scaleIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes scaleIn {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<h2 th:text="${category.name}"></h2>
-
+<th:block th:insert="~{/elements/header}"/>
+<h2 class="category-title" th:text="${category.name}"></h2>
 <div class="container-fluid mb-4" th:each="p : ${category.productList}">
-  <div class="card w-25 m-1" type="product">
+  <div class="card w-25 m-1 product-card" type="product">
     <div class="card-body">
       <a th:href="@{'/product/' + ${p.id}}">
-        <img class="card-img" style="width:200px;height:250px"
-             th:src="@{'/images/' + ${p.imageName}}" alt th:text="${p.name}"></a>
-      <h4 class="card-title" th:text="${p.description}"></h4>
-      <h4 class="card-title" th:text="${p.price}"></h4>
+        <img class="card-img" style="width:300px;height:400px"
+             th:src="@{'/images/' + ${p.imageName}}"></a>
+      <h4 class="card-name" th:text="${p.name}"></h4>
+      <h4 class="card-description" th:text="${p.description}"></h4>
+      <h4 class="card-price" th:text="${p.price}"></h4>
     </div>
   </div>
-  </c:forEach>
 </div>
+
+<script>
+  // Add animation classes to product cards when the page loads
+  $(document).ready(function () {
+    $(".product-card").addClass("animated");
+  });
+</script>
+<div th:block th:insert="~{elements/footer.html}"></div>
 </body>
 </html>

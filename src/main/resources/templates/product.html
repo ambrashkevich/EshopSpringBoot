@@ -2,34 +2,124 @@
 <html lang="en">
 <head>
   <title>Categories</title>
-  <th:block th:insert="~{/header}"/>
-  <th:block th:insert="~{/libs}"/>
-  <script>
-    function productAddedToShoppingCartMsg() {
-      window.confirm("Продукт добавлен в корзину!");
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    .container-fluid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
-  </script>
 
+    .card {
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card-body {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .card-img {
+      width: 200px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-family: "Arial", sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .card-description {
+      font-family: "Arial", sans-serif;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .card-price {
+      font-family: "Arial", sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .buy-button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .buy-button:hover {
+      background-color: #45a049;
+    }
+
+    .cart-button {
+      background-color: #008CBA;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .cart-button:hover {
+      background-color: #006080;
+    }
+  </style>
 </head>
 <body>
-<h2 th:text="${product.getName()}"></h2>
-
-<div class="container-fluid mb-4">
-  <div class="card w-25 m-1" type="product">
+<div class="container-fluid">
+  <div class="card">
     <div class="card-body">
-      <img class="card-img" style="width:200px;height:250px"
-           th:src="@{'/images/' + ${product.getImageName()}}"></a>
+      <img class="card-img" th:src="@{'/images/' + ${product.getImageName()}}">
       <h3 class="card-title" th:text="${product.getName()}"></h3>
-      <h5 class="card-title" th:text="${product.getDescription()}"></h5>
-      <h2 class="card-title" th:text="${product.getPrice()}"></h2>
+      <h5 class="card-description" th:text="${product.getDescription()}"></h5>
+      <h2 class="card-price" th:text="${product.getPrice()}"></h2>
+      <form th:method="POST" th:action="@{/cart/add(product_id=${product.getId()}, name=${product.getName()})}" th:object="${person}">
+        <button class="buy-button" onclick="productAddedToShoppingCartMsg()">Buy Now</button>
+      </form>
+      <a href="/cart/open">
+        <button class="cart-button">Go to Cart</button>
+      </a>
     </div>
   </div>
 </div>
-<form th:method="POST" th:action="@{/cart/add(product_id=${product.getId()}, name=${product.getName()})}" th:object="${person}">
-  <button id="addProductToCart" type="submit" onclick="productAddedToShoppingCartMsg()">Купить</button>
-</form>
-<a th:href="@{/cart/open}">
-  <button id="cartRedirect" type="submit">Корзина</button>
-</a>
+<script>
+  function productAddedToShoppingCartMsg() {
+    window.confirm("Product added to cart!");
+  }
+</script>
 </body>
 </html>
