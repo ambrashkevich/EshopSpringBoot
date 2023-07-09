@@ -28,11 +28,9 @@ public class HomeController {
 
     @GetMapping
     public ModelAndView openHomePage(@SessionAttribute("user") User user) {
-        log.info("User with email: " + user.getEmail() + "successfully logged in!");
-        ModelMap model = new ModelMap();
+        log.info("User with email: {} successfully logged in!", user.getEmail());
         List<Category> categoriesList = categoryService.getCategories();
-        model.addAttribute("categories", categoriesList);
+        ModelMap model = new ModelMap("categories", categoriesList);
         return new ModelAndView(HOME_PAGE, model);
-
     }
 }

@@ -23,15 +23,13 @@ public class CartController {
     public final CartService cartService;
 
     @PostMapping("/add")
-    public ModelAndView addProductToCart(@RequestParam("product_id") String id, @ModelAttribute("cart") Cart shopCart) {
-        int productId = Integer.parseInt(id);
-        return cartService.addProductToCart(productId, shopCart);
+    public ModelAndView addProductToCart(@RequestParam("product_id") Long id, @ModelAttribute("cart") Cart shopCart) {
+        return cartService.addProductToCart(id, shopCart);
     }
 
     @GetMapping("/delete")
-    public ModelAndView deleteProductFromCart(@RequestParam("product_id") String id, @ModelAttribute("cart") Cart shopCart) {
-        int productId = Integer.parseInt(id);
-        return cartService.deleteProductFromCart(productId, shopCart);
+    public ModelAndView deleteProductFromCart(@RequestParam("product_id") Long id, @ModelAttribute("cart") Cart shopCart) {
+        return cartService.deleteProductFromCart(id, shopCart);
     }
 
     @GetMapping("/open")

@@ -26,7 +26,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public ModelAndView getCategoryData(int id) {
+    public ModelAndView getCategoryData(Long id) {
         ModelMap model = new ModelMap();
         Category category = categoryRepository.findCategoryById(id);
         if (category != null) {

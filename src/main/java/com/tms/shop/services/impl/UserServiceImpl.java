@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+
     private final UserRepository userRepository;
     private final CategoryService categoryService;
 
