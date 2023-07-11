@@ -11,6 +11,7 @@ public class Constants {
     public static final String SIGN_IN_PAGE = "signin";
     public static final String REGISTER_IN_PAGE = "register";
     public static final String USER_AGR = "agreement";
+    public static final String PRODUCTS_PAGE ="all-products";
     public static final String PRODUCT_PAGE = "product";
     public static final String CATEGORY_PAGE = "category";
     public static final String ERROR_PAGE = "error";

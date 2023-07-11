@@ -46,9 +46,8 @@
 </head>
 <body>
 <th:block th:insert="~{/elements/header}"/>
-<h2 class="category-title" th:text="${category.name}"></h2>
 <div class="container-fluid mb-4 d-flex">
-  <div class="card w-25 m-1 product-card" type="product" th:each="p : ${category.productList}">
+  <div class="card w-25 m-1 product-card" type="product" th:each="p : ${products}">
     <div class="card-body text-center" >
       <a th:href="@{'/product/' + ${p.id}}">
         <img class="card-img" style="justify-content: center; width:auto;height:200px"
@@ -62,10 +61,10 @@
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item">
-      <a class="page-link" th:href="@{${category.id}+'?page='+${page.getNumber()}}"  tabindex="-1" aria-disabled="true">Previous</a>
+      <a class="page-link" th:href="@{'?page='+${page.getNumber()}+'&name='+${name}}"  tabindex="-1" aria-disabled="true">Previous</a>
     </li>
     <li class="page-item">
-      <a class="page-link" th:href="@{${category.id}+'?page='+${page.getNumber()+2}}">Next</a>
+      <a class="page-link" th:href="@{'?page='+${page.getNumber()+2}+'&name='+${name}}">Next</a>
     </li>
   </ul>
 </nav>

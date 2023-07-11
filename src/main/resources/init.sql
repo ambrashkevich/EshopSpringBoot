@@ -111,9 +111,9 @@ alter table orders_products
 
 
 INSERT INTO products (id, name, description, price, image_path, category_id)
-VALUES (1, 'Iphone 14', 'Apple iOS, экран 6.1\" OLED (1170x2532) 60 Гц, Apple A15 Bionic, ОЗУ 6 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1300, 'iphone14.png', 1);
+VALUES (1, 'Iphone 14', 'Apple iOS, экран 6.1\" OLED (1170x2532) 60 Гц, Apple A15 Bionic, ОЗУ 6 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1300, 'iphone.jpg', 1);
 INSERT INTO products (id, name, description, price, image_path, category_id)
-VALUES (2, 'Samsung Galaxy M53 5G', 'Android 12, Super AMOLED Plus 120 Гц, 6,7 дюйма, 1080 х 2408, 20:9, MediaTek MT6877 Dimensity 900, ОЗУ 8 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1100, 'galaxym53.jpg', 1);
+VALUES (2, 'Samsung Galaxy M53 5G', 'Android 12, Super AMOLED Plus 120 Гц, 6,7 дюйма, 1080 х 2408, 20:9, MediaTek MT6877 Dimensity 900, ОЗУ 8 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1100, 'samsung.jpg', 1);
 INSERT INTO products (id, name, description, price, image_path, category_id)
 VALUES (3, 'Macbook Air 13',
         'Операционная система: MacOS, разрешение экрана: 2560x1600, IPS, соотношение: 16:10, 60 гц, процессор: M1, кол-во ядер: 8, частота процессора: 3200 МГц, графический адаптер: Apple M1 GPU, оперативная память: 8 гб,ёмкость SSD: 256 гб',
@@ -145,3 +145,12 @@ INSERT INTO users (name, surname, email, password)
 VALUES ('Vadim', 'Vadimovich', 'vadim@mail.ru', '123123'),
        ('Max', 'Ivanov', 'max@bk.ru', 'admin123'),
        ('Anton', 'Antonov','anton@list.ru', '11111111');
+
+INSERT INTO products (id, name, description, price, image_path, category_id)
+VALUES (13, 'Iphone 14', 'Apple iOS, экран 6.1\" OLED (1170x2532) 60 Гц, Apple A15 Bionic, ОЗУ 6 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1300, 'iphone.jpg', 1);
+INSERT INTO products (id, name, description, price, image_path, category_id)
+VALUES (14, 'Samsung Galaxy M53 5G', 'Android 12, Super AMOLED Plus 120 Гц, 6,7 дюйма, 1080 х 2408, 20:9, MediaTek MT6877 Dimensity 900, ОЗУ 8 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1100, 'samsung.jpg', 1);
+INSERT INTO products (id, name, description, price, image_path, category_id)
+VALUES (15, 'Iphone 14', 'Apple iOS, экран 6.1\" OLED (1170x2532) 60 Гц, Apple A15 Bionic, ОЗУ 6 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1300, 'iphone.jpg', 1);
+INSERT INTO products (id, name, description, price, image_path, category_id)
+VALUES (16, 'Samsung Galaxy M53 5G', 'Android 12, Super AMOLED Plus 120 Гц, 6,7 дюйма, 1080 х 2408, 20:9, MediaTek MT6877 Dimensity 900, ОЗУ 8 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1100, 'samsung.jpg', 1);

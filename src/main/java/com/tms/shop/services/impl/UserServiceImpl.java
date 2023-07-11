@@ -27,8 +27,13 @@ public class UserServiceImpl implements UserService {
         ModelAndView modelAndView = new ModelAndView();
         User loggedUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if (Optional.ofNullable(loggedUser).isPresent()) {
+            String name = loggedUser.getName();
+            String surname = loggedUser.getSurname();
+
             ModelMap modelMap = new ModelMap();
             List<Category> categoriesList = categoryService.getCategories();
+            modelMap.addAttribute("name", name);
+            modelMap.addAttribute("surname", surname);
             modelMap.addAttribute("categories", categoriesList);
             modelAndView.setViewName(HOME_PAGE);
             modelAndView.addAllObjects(modelMap);
