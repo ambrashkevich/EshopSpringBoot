@@ -36,7 +36,8 @@ create table if not exists users
     name     varchar(45)    not null,
     surname  varchar(45)    not null,
     email    varchar(200)   not null,
-    password varchar(50)    not null
+    password varchar   not null,
+    role     varchar(10)    not null
     );
 alter table users
     owner to postgres;
@@ -141,10 +142,10 @@ VALUES (11, 'GoPro HERO10', 'Разрешение видеосъёмки: 5.3K, 
 INSERT INTO products(id, name, description, price, image_path, category_id)
 VALUES (12, 'Panasonic HC-V770', 'Разрешение видеосъёмки: Full HD, матрица: BSI MOS, электронная стабилизация: оптическая, количество пикселей при фотосъемке: 24 Мп, разрешение фотоснимка:6528x3672, емкость аккумулятора: 1940 мАч', 1100,'panasonic.jpg', 6);
 
-INSERT INTO users (name, surname, email, password)
-VALUES ('Vadim', 'Vadimovich', 'vadim@mail.ru', '123123'),
-       ('Max', 'Ivanov', 'max@bk.ru', 'admin123'),
-       ('Anton', 'Antonov','anton@list.ru', '11111111');
+INSERT INTO users (name, surname, email, password,role)
+VALUES ('Vadim', 'Vadimovich', 'vadim@mail.ru', '123123', null),
+       ('Max', 'Ivanov', 'max@bk.ru', '$2a$10$7mwFb6pqvFu8bHBANuj4zO0rmQ3TDfYtmFUFf5HXCxoU.0tTcyCy.',null),
+       ('Anton', 'Antonov','anton@list.ru', '11111111',null);
 
 INSERT INTO products (id, name, description, price, image_path, category_id)
 VALUES (13, 'Iphone 14', 'Apple iOS, экран 6.1\" OLED (1170x2532) 60 Гц, Apple A15 Bionic, ОЗУ 6 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1300, 'iphone.jpg', 1);

@@ -90,34 +90,31 @@
 <body>
 <div class="container">
   <div class="col-md-8 offset-md-4">
-    <h2>Register</h2>
-    <form th:action="@{/register}" th:object="${user}" method="post">
+    <h2>Edit</h2>
+    <form th:action="@{/edit}" th:object="${user}" method="post">
       <div class="form-group">
         <label for="name">Name:</label>
-        <input type="text" class="form-control w-25"  id="name" placeholder="Enter username" name="name">
-        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        <input type="text" class="form-control w-25" th:value="${user.name}" id="name" placeholder="Enter username" name="name">
       </div>
       <div class="form-group">
         <label for="surname">Surname:</label>
-        <input type="text" class="form-control w-25"  id="surname" placeholder="Enter surname" name="surname">
-        <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
+        <input type="text" class="form-control w-25" th:value="${user.surname}" id="surname" placeholder="Enter surname" name="surname">
       </div>
       <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" class="form-control w-25" id="password" placeholder="Enter password" name="password">
-        <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        <input type="hidden" class="form-control w-25" th:value="${user.password}" id="password" placeholder="Enter password" name="password">
       </div>
       <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" class="form-control w-25" id="email" placeholder="Enter email" name="email">
-        <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        <input type="hidden" class="form-control w-25" th:value="${user.email}" id="email" placeholder="Enter email" name="email">
       </div>
-      <button type="submit" class="btn btn-primary">Register</button>
-      <p class="message">Registered?<a href="/login">Log in</a></p>
-    </form>
-    <div th:if="${param.success}">
-      User registered successfully!
+      <div class="form-group">
+        <input type="hidden" class="form-control w-25" th:value="${user.id}" id="id" placeholder="Enter email" name="id">
+      </div>
+      <div class="form-group">
+      <input type="hidden" class="form-control w-25" th:value="${user.role}" id="role" placeholder="Enter email" name="role">
     </div>
+
+      <button type="submit" class="btn btn-primary">Edit</button>
+    </form>
   </div>
 </div>
 </body>

@@ -10,6 +10,8 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,18 +21,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Setter
 @Slf4j
-@RestController
+@Controller
 @RequiredArgsConstructor
-@RequestMapping("/home")
 public class HomeController {
 
     private final CategoryService categoryService;
 
-    @GetMapping
-    public ModelAndView openHomePage(@SessionAttribute("user") User user) {
-        log.info("User with email: {} successfully logged in!", user.getEmail());
+    @GetMapping("/")
+    public String openHomePage(Model model /*@SessionAttribute("user") User user*/) {
+//        log.info("User with email: {} successfully logged in!", user.getEmail());
         List<Category> categoriesList = categoryService.getCategories();
-        ModelMap model = new ModelMap("categories", categoriesList);
-        return new ModelAndView(HOME_PAGE, model);
+        model.addAttribute("categories", categoriesList);
+        return HOME_PAGE;
     }
 }
