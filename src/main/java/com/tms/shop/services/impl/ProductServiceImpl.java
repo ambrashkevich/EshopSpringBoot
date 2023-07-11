@@ -1,16 +1,12 @@
 package com.tms.shop.services.impl;
 
-import static com.tms.shop.utils.Constants.PRODUCT_PAGE;
-
 import com.tms.shop.entities.Product;
 import com.tms.shop.repositories.ProductRepository;
 import com.tms.shop.services.ProductService;
-import java.util.List;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.servlet.ModelAndView;
 
 @Service
 @RequiredArgsConstructor
@@ -19,17 +15,22 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     @Override
-    public List<Product> getProductsByCategoryId(Long categoryId) {
-        return productRepository.findAllByCategory_Id(categoryId);
+    public Page<Product> getProductsByCategoryId(Long categoryId, int pageNumber, int pageSize) {
+        return productRepository.findAllByCategory_Id(categoryId, PageRequest.of(pageNumber, pageSize));
     }
 
     @Override
-    public ModelAndView getProductData(Long id) {
-        ModelMap modelMap = new ModelMap();
-        Product product = productRepository.findById(id);
-        if (Optional.ofNullable(product).isPresent()) {
-            modelMap.addAttribute("product", product);
-        }
-        return new ModelAndView(PRODUCT_PAGE, modelMap);
+    public Product getProductById(Long id) {
+        return productRepository.getProductById(id);
+    }
+
+    @Override
+    public Page<Product> getProductsByCategory(Long id, int pageNumber, int pageSize) {
+        return productRepository.findAllByCategory_Id(id, PageRequest.of(pageNumber, pageSize));
+    }
+
+    @Override
+    public Page<Product> getProducts(String productName, int pageNumber, int pageSize) {
+        return productRepository.findAllWithSearch(productName, PageRequest.of(pageNumber, pageSize));
     }
 }

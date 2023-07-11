@@ -16,7 +16,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <th:block th:insert="~{/libs}"/>
     <div class="container-fluid">
-      <a class="navbar-brand" href="/home">Navbar</a>
+      <a class="navbar-brand" href="/home">Shop</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -27,6 +27,10 @@
           <a class="nav-link active" aria-current="page" href="/cart/open">Cart</a>
         </div>
       </div>
+      <form class="form-inline" method="get" th:action="@{'/product'}">
+        <input name="name" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Profile
