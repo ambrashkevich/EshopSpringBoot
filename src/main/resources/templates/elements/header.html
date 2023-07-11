@@ -38,7 +38,9 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#">My Profile</a>
           <a class="dropdown-item" href="#">Settings</a>
-          <a class="dropdown-item" href="/auth/logout">Logout</a>
+            <form class="dropdown-item" th:action="@{/logout}" method="post">
+              <input class="btn" type="submit" value="Logout" />
+            </form>
         </div>
       </div>
     </div>
