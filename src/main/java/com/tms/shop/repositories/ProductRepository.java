@@ -2,16 +2,21 @@ package com.tms.shop.repositories;
 
 import com.tms.shop.entities.Product;
 import java.util.List;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductRepository extends CrudRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    List<Product> findAll();
+    Product getProductById(Long id);
 
-    Product findById(int id);
+    List<Product> findAllByCategory_Id(Long id);
 
-    List<Product> findAllByCategory_Id(int id);
+    Page<Product> findAllByCategory_Id(Long id, Pageable pageable);
+    @Query("SELECT p FROM Product p WHERE p.name LIKE %?1%")
+    Page<Product> findAllWithSearch(String search, Pageable pageable);
 
 }

@@ -6,7 +6,12 @@ import java.util.List;
 import org.springframework.web.servlet.ModelAndView;
 
 public interface UserService {
-    ModelAndView authenticate(User user) throws AuthorizationException;
 
     List<User> read();
+
+    User getUserByEmail(String email);
+
+    void registration(User user);
+
+    void edit(User user);
 }

@@ -1,0 +1,48 @@
+<header style="width: 100%; background-color: darkolivegreen">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+    .nav-link {
+      color: white;
+      font-family: "Arial", sans-serif;
+      font-size: 16px;
+    }
+    .dropdown-menu {
+      font-family: "Times New Roman", serif;
+    }
+  </style>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <th:block th:insert="~{/libs}"/>
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/home">Shop</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+          <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
+          <a class="nav-link active" aria-current="page" href="/cart/open">Cart</a>
+        </div>
+      </div>
+      <form class="form-inline" method="get" th:action="@{'/product'}">
+        <input name="name" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Profile
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">My Profile</a>
+          <a class="dropdown-item" href="#">Settings</a>
+            <form class="dropdown-item" th:action="@{/logout}" method="post">
+              <input class="btn" type="submit" value="Logout" />
+            </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

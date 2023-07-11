@@ -1,12 +1,15 @@
 package com.tms.shop.services;
 
 import com.tms.shop.entities.Product;
-import java.util.List;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.data.domain.Page;
 
 public interface ProductService {
 
-    List<Product> getProductsByCategoryId(int categoryId);
+    Page<Product> getProductsByCategoryId(Long categoryId, int pageNumber, int pageSize);
 
-    public ModelAndView getProductData(int id);
+    Product getProductById(Long id);
+
+    Page<Product> getProductsByCategory(Long id, int currentPage, int pageSize);
+
+    Page<Product> getProducts(String productName, int currentPage, int pageSize);
 }

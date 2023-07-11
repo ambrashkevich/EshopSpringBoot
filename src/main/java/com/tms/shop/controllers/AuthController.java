@@ -1,45 +1,63 @@
 package com.tms.shop.controllers;
 
-import static com.tms.shop.utils.Constants.SIGN_IN_PAGE;
-
+import com.tms.shop.entities.Role;
 import com.tms.shop.entities.User;
-import com.tms.shop.exceptions.AuthorizationException;
+import com.tms.shop.repositories.UserRepository;
 import com.tms.shop.services.UserService;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-import org.springframework.validation.BindingResult;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
-@RequiredArgsConstructor
-@RestController
-@SessionAttributes({"user"})
-@RequestMapping("/login")
+@Controller
+//@RequestMapping("/auth")
 public class AuthController {
+
 
     private final UserService userService;
 
-    @GetMapping
-    public ModelAndView openLoginPage() {
-        return new ModelAndView(SIGN_IN_PAGE);
+    public AuthController(UserService userService) {
+        this.userService = userService;
     }
 
-    @PostMapping
-    public ModelAndView login(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, ModelAndView modelAndView) throws AuthorizationException {
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName(SIGN_IN_PAGE);
-            return modelAndView;
+    @GetMapping("/login")
+    public String openLoginPage() {
+        return "signin";
+    }
+
+    @GetMapping("/register")
+    public String openRegisterPage(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String registerUser(@ModelAttribute("user") User user, Model model) {
+        String email = user.getEmail();
+        User existingUser = userService.getUserByEmail(email);
+        if (existingUser != null) {
+            model.addAttribute("error", "Email already exists");
+            return "register";
         }
-        return userService.authenticate(user);
+        userService.registration(user);
+        return "redirect:/register?success";
+    }
+    @GetMapping("/edit")
+    public String editUserPage(Model model, @AuthenticationPrincipal(expression = "username") String email) {
+        User user = userService.getUserByEmail(email);
+        model.addAttribute("user", user);
+        return "edit";
     }
 
-    @ModelAttribute("user")
-    public User setUpUserForm() {
-        return new User();
+    @PostMapping("/edit")
+    public String editUser(@ModelAttribute("user") User user) {
+        userService.edit(user);
+        return "redirect:/profile";
     }
 }
+
