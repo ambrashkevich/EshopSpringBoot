@@ -12,8 +12,13 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
-@Autowired
+
     private UserRepository userRepository;
+
+    @Autowired
+    public UserDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
 
     @Override
@@ -21,7 +26,7 @@ public class UserDetailsService implements org.springframework.security.core.use
         User user = userRepository.findByEmail(email);
         userRepository.save(user);
         if (user == null) {
-            throw new UsernameNotFoundException( "Пользователь" + email + "не найден");
+            throw new UsernameNotFoundException("Пользователь" + email + "не найден");
         }
         return new CustomUserDetails(user);
     }
