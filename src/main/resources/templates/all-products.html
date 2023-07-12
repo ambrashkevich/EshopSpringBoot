@@ -14,8 +14,12 @@
       font-size: 24px;
       color: #333;
       text-align: center;
-      margin-top: 30px;
+      margin-top: 10px;
       animation: fadeIn 1s ease-in-out;
+      display: flex;
+      justify-content: right;
+      padding-right: 20px;
+      padding-left: 20px;
     }
 
     .product-card {
@@ -46,25 +50,29 @@
 </head>
 <body>
 <th:block th:insert="~{/elements/header}"/>
+<div class="category-title">
+  <div><a class="btn btn-outline-primary" th:href="@{'?page='+${page.getNumber()+1}+'&name='+${name}+'&sort=min'}" role="button">Min price</a>
+    <a class="btn btn-outline-primary" th:href="@{'?page='+${page.getNumber()+1}+'&name='+${name}+'&sort=max'}" role="button">Max price</a></div>
+</div>
 <div class="container-fluid mb-4 d-flex">
   <div class="card w-25 m-1 product-card" type="product" th:each="p : ${products}">
-    <div class="card-body text-center" >
+    <div class="card-body text-center">
       <a th:href="@{'/product/' + ${p.id}}">
         <img class="card-img" style="justify-content: center; width:auto;height:200px"
              th:src="@{'/images/' + ${p.imageName}}"></a>
       <p class="card-name" th:text="${p.name}"></p>
       <p class="card-description" th:text="${p.description}"></p>
-      <p class="card-price" th:text="${p.price}"></p>
+      <p class="card-price" th:text="${p.price + '$'}"></p>
     </div>
   </div>
 </div>
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item">
-      <a class="page-link" th:href="@{'?page='+${page.getNumber()}+'&name='+${name}}"  tabindex="-1" aria-disabled="true">Previous</a>
+      <a class="page-link" th:href="@{'?page='+${page.getNumber()}+'&name='+${name}+'&sort='+${sort}}" tabindex="-1" aria-disabled="true">Previous</a>
     </li>
     <li class="page-item">
-      <a class="page-link" th:href="@{'?page='+${page.getNumber()+2}+'&name='+${name}}">Next</a>
+      <a class="page-link" th:href="@{'?page='+${page.getNumber()+2}+'&name='+${name}+'&sort='+${sort}}">Next</a>
     </li>
   </ul>
 </nav>
@@ -74,6 +82,7 @@
     $(".product-card").addClass("animated");
   });
 </script>
+<div th:block th:insert="~{elements/footer.html}"></div>
 </body>
 <!--<div th:block th:insert="~{elements/footer.html}"></div>-->
 </html>

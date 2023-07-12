@@ -148,10 +148,10 @@ VALUES ('Vadim', 'Vadimovich', 'vadim@mail.ru', '123123', null),
        ('Anton', 'Antonov','anton@list.ru', '11111111',null);
 
 INSERT INTO products (id, name, description, price, image_path, category_id)
-VALUES (13, 'Iphone 14', 'Apple iOS, экран 6.1\" OLED (1170x2532) 60 Гц, Apple A15 Bionic, ОЗУ 6 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1300, 'iphone.jpg', 1);
+VALUES (13, 'Honor 70', 'Android 12, экран 6.1\" OLED (3840x2160) 60 Гц, Qualcomm Snapdragon 778G+, ОЗУ 6 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1100, 'honor.jpg', 1);
 INSERT INTO products (id, name, description, price, image_path, category_id)
-VALUES (14, 'Samsung Galaxy M53 5G', 'Android 12, Super AMOLED Plus 120 Гц, 6,7 дюйма, 1080 х 2408, 20:9, MediaTek MT6877 Dimensity 900, ОЗУ 8 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1100, 'samsung.jpg', 1);
+VALUES (14, 'Realme 9', 'Android 12, Super AMOLED Plus 120 Гц, 6,7 дюйма, 1080x2400, 20:9, MediaTek MT6877 Dimensity 900, ОЗУ 8 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1100, 'realme.jpg', 1);
 INSERT INTO products (id, name, description, price, image_path, category_id)
-VALUES (15, 'Iphone 14', 'Apple iOS, экран 6.1\" OLED (1170x2532) 60 Гц, Apple A15 Bionic, ОЗУ 6 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1300, 'iphone.jpg', 1);
+VALUES (15, 'Iphone 14', 'Apple iOS, экран 6.1\" OLED (1170x2532) 60 Гц, Apple A15 Bionic, ОЗУ 6 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1300, 'iphone14.jpg', 1);
 INSERT INTO products (id, name, description, price, image_path, category_id)
-VALUES (16, 'Samsung Galaxy M53 5G', 'Android 12, Super AMOLED Plus 120 Гц, 6,7 дюйма, 1080 х 2408, 20:9, MediaTek MT6877 Dimensity 900, ОЗУ 8 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1100, 'samsung.jpg', 1);
+VALUES (16, 'Poco', 'Android 12, Super AMOLED Plus 120 Гц, 6,7 дюйма, 1080 х 2408, 20:9, MediaTek MT6877 Dimensity 900, ОЗУ 8 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1100, 'poco.jpg', 1);
