@@ -1,0 +1,57 @@
+.card {
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img {
+  width: 200px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-family: "Arial", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.card-price {
+  font-family: "Arial", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#deleteProductToCart {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+#deleteProductToCart:hover {
+  background-color: #d32f2f;
+}

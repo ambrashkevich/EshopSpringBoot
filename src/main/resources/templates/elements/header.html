@@ -1,18 +1,7 @@
 <header style="width: 100%; background-color: darkolivegreen">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-  <style>
-    .nav-link {
-      color: white;
-      font-family: "Arial", sans-serif;
-      font-size: 16px;
-    }
-    .dropdown-menu {
-      font-family: "Times New Roman", serif;
-    }
-  </style>
+  <link rel="stylesheet" th:href="@{/css/header.css}">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <th:block th:insert="~{/libs}"/>
     <div class="container-fluid">
@@ -22,9 +11,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
           <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
           <a class="nav-link active" aria-current="page" href="/cart/open">Cart</a>
+          <a class="nav-link active" aria-current="page" href="/product" th:action="@{'/product'}">All products</a>
         </div>
       </div>
       <form class="form-inline" method="get" th:action="@{'/product'}">
@@ -37,10 +27,9 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#">My Profile</a>
-          <a class="dropdown-item" href="#">Settings</a>
-            <form class="dropdown-item" th:action="@{/logout}" method="post">
-              <input class="btn" type="submit" value="Logout" />
-            </form>
+          <a class="dropdown-item" th:action="@{/logout}" method="post">
+            <input class="btn header" type="submit" value="Logout"/>
+          </a>
         </div>
       </div>
     </div>

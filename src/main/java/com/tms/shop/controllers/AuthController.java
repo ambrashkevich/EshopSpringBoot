@@ -1,12 +1,8 @@
 package com.tms.shop.controllers;
 
-import com.tms.shop.entities.Role;
 import com.tms.shop.entities.User;
-import com.tms.shop.repositories.UserRepository;
 import com.tms.shop.services.UserService;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-//@RequestMapping("/auth")
 public class AuthController {
-
 
     private final UserService userService;
 
@@ -47,6 +41,7 @@ public class AuthController {
         userService.registration(user);
         return "redirect:/register?success";
     }
+
     @GetMapping("/edit")
     public String editUserPage(Model model, @AuthenticationPrincipal(expression = "username") String email) {
         User user = userService.getUserByEmail(email);

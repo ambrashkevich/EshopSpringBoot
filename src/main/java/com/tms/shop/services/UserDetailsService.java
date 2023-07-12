@@ -1,7 +1,6 @@
 package com.tms.shop.services;
 
 import com.tms.shop.entities.CustomUserDetails;
-import com.tms.shop.entities.Role;
 import com.tms.shop.entities.User;
 import com.tms.shop.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
