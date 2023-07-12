@@ -1,9 +1,9 @@
 package com.tms.shop.services.impl;
 
+import com.tms.shop.dto.UserDto;
 import com.tms.shop.entities.Role;
 import com.tms.shop.entities.User;
 import com.tms.shop.repositories.UserRepository;
-import com.tms.shop.services.CategoryService;
 import com.tms.shop.services.UserService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,6 @@ public class UserServiceImpl implements UserService {
     @Qualifier("passwordEncoder")
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
-    private final CategoryService categoryService;
 
 
     @Override
@@ -39,7 +38,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void edit(User user) {
+    public void edit(UserDto userDto) {
+        User user = userRepository.findByEmail(userDto.getEmail());
+        user.setName(userDto.getName());
+        user.setSurname(userDto.getSurname());
         userRepository.save(user);
     }
 }

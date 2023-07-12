@@ -7,7 +7,6 @@ import com.tms.shop.entities.Product;
 import com.tms.shop.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
 @RequiredArgsConstructor
@@ -16,13 +15,10 @@ public class CartService {
 
     private final ProductRepository productRepository;
 
-    public ModelAndView addProductToCart(Long productId, Cart shopCart) {
-        ModelMap modelParams = new ModelMap();
+    public Product addProductToCart(Long productId, Cart shopCart) {
         Product product = productRepository.getProductById(productId);
         shopCart.addProduct(product);
-        modelParams.addAttribute("product", product);
-        modelParams.addAttribute("cart", shopCart);
-        return new ModelAndView(CART_PAGE, modelParams);
+        return product;
     }
 
     public ModelAndView deleteProductFromCart(Long productId, Cart shopCart) {

@@ -1,5 +1,10 @@
 package com.tms.shop.controllers;
 
+import static com.tms.shop.utils.Constants.EDIT_PAGE;
+import static com.tms.shop.utils.Constants.REGISTER_PAGE;
+import static com.tms.shop.utils.Constants.SIGN_PAGE;
+
+import com.tms.shop.dto.UserDto;
 import com.tms.shop.entities.User;
 import com.tms.shop.services.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -20,14 +25,14 @@ public class AuthController {
 
     @GetMapping("/login")
     public String openLoginPage() {
-        return "signin";
+        return SIGN_PAGE;
     }
 
     @GetMapping("/register")
     public String openRegisterPage(Model model) {
         User user = new User();
         model.addAttribute("user", user);
-        return "register";
+        return REGISTER_PAGE;
     }
 
     @PostMapping("/register")
@@ -36,7 +41,7 @@ public class AuthController {
         User existingUser = userService.getUserByEmail(email);
         if (existingUser != null) {
             model.addAttribute("error", "Email already exists");
-            return "register";
+            return REGISTER_PAGE;
         }
         userService.registration(user);
         return "redirect:/register?success";
@@ -46,11 +51,11 @@ public class AuthController {
     public String editUserPage(Model model, @AuthenticationPrincipal(expression = "username") String email) {
         User user = userService.getUserByEmail(email);
         model.addAttribute("user", user);
-        return "edit";
+        return EDIT_PAGE;
     }
 
     @PostMapping("/edit")
-    public String editUser(@ModelAttribute("user") User user) {
+    public String editUser(@ModelAttribute("user") UserDto user) {
         userService.edit(user);
         return "redirect:/profile";
     }

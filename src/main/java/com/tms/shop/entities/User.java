@@ -27,7 +27,6 @@ public class User extends BaseEntity implements Serializable {
     private String name;
     @Column(name = "surname")
     private String surname;
-    //    @Size(min = 6, max = 30, message = "Password must be between 6 and 30 characters")
     @Pattern(regexp = "\\S+", message = "Spaces are not allowed")
     @NotEmpty(message = "Password must not be empty")
     @Column(name = "password")

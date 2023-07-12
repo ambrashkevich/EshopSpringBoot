@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>User Registration</title>
-  <link rel="stylesheet" th:href="@{/css/register.css}">
   <style>
     .container {
       max-width: 500px;
@@ -85,6 +84,7 @@
     .message a:hover {
       text-decoration: underline;
     }
+
     .loading-overlay {
       display: none;
       position: fixed;
@@ -135,12 +135,12 @@
     <form th:action="@{/register}" th:object="${user}" method="post">
       <div class="form-group">
         <label for="name">Name:</label>
-        <input type="text" class="form-control w-25"  id="name" placeholder="Enter username" name="name">
+        <input type="text" class="form-control w-25" id="name" placeholder="Enter username" name="name">
         <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
       </div>
       <div class="form-group">
         <label for="surname">Surname:</label>
-        <input type="text" class="form-control w-25"  id="surname" placeholder="Enter surname" name="surname">
+        <input type="text" class="form-control w-25" id="surname" placeholder="Enter surname" name="surname">
         <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
       </div>
       <div class="form-group">
@@ -156,7 +156,7 @@
       <button type="submit" class="btn btn-primary" onclick="showLoading()">Register</button>
       <p class="message">Registered?<a href="/login">Log in</a></p>
     </form>
-    <div style="text-align: center"  th:if="${param.success}">
+    <div style="text-align: center" th:if="${param.success}">
       User registered successfully!
     </div>
   </div>

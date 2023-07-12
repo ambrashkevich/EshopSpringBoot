@@ -28,17 +28,22 @@ public class CategoryController {
     @GetMapping("/{id}")
     public String openCategoryPage(Model model, @PathVariable Long id,
                                    @RequestParam(required = false, name = "page") Integer pageNumber,
-                                   @RequestParam(required = false, name = "name") String searchProduct) {
+                                   @RequestParam(required = false, name = "name") String searchProduct,
+                                   @RequestParam(required = false, name = "sort") String sort) {
         Category category = categoryService.getCategory(id);
         if (category != null) {
             int currentPage = 0;
             if (pageNumber != null) {
                 currentPage = pageNumber - 1;
             }
-            Page<Product> productsPage = productService.getProductsByCategory(category.getId(), currentPage, PAGE_SIZE);
+            if (sort == null) {
+                sort = "min";
+            }
+            Page<Product> productsPage = productService.getProductsByCategory(category.getId(), currentPage, PAGE_SIZE, sort);
             category.setProductList(productsPage.getContent());
             model.addAttribute("category", category);
             model.addAttribute("page", productsPage);
+            model.addAttribute("sort", sort);
         }
         return CATEGORY_PAGE;
     }
