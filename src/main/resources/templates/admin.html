@@ -36,15 +36,8 @@
 </head>
 <body>
 <div class="card w-50 mx-auto" type="user">
-  <h3 class="text-center">Welcome, <span class="font-italic" th:text="${user.getEmail()}"></span>!</h3>
-  <p class="text-center">Your name: <span class="font-italic" th:text="${user.getName()}"></span></p>
-  <p class="text-center">Your surname: <span class="font-italic" th:text="${user.getSurname()}"></span></p>
-  <p class="text-center">Your password: <span class="font-italic" th:text="${user.getPassword()}"></span></p>
-  <div class="btn-container">
-    <a th:href="@{'/edit'}">
-      <button class="btn" type="button">Edit profile</button>
-    </a>
-  </div>
+  <h3 class="text-center">Welcome admin!, <span class="font-italic" th:text="${email}"></span>!</h3>
+  <span>Эту страницу видит только админ</span>
 </div>
 <div th:block th:insert="~{elements/footer.html}"></div>
 </body>

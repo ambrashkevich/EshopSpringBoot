@@ -1,7 +1,6 @@
 package com.tms.shop.services;
 
 import com.tms.shop.entities.CustomUserDetails;
-import com.tms.shop.entities.Role;
 import com.tms.shop.entities.User;
 import com.tms.shop.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,16 +12,19 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
-@Autowired
+
     private UserRepository userRepository;
 
+    @Autowired
+    public UserDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
-        userRepository.save(user);
         if (user == null) {
-            throw new UsernameNotFoundException( "Пользователь" + email + "не найден");
+            throw new UsernameNotFoundException("Пользователь" + email + "не найден");
         }
         return new CustomUserDetails(user);
     }

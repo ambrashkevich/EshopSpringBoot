@@ -1,18 +1,8 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <header style="width: 100%; background-color: darkolivegreen">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-  <style>
-    .nav-link {
-      color: white;
-      font-family: "Arial", sans-serif;
-      font-size: 16px;
-    }
-    .dropdown-menu {
-      font-family: "Times New Roman", serif;
-    }
-  </style>
+  <link rel="stylesheet" th:href="@{/css/header.css}">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <th:block th:insert="~{/libs}"/>
     <div class="container-fluid">
@@ -22,27 +12,23 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
           <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
-          <a class="nav-link active" aria-current="page" href="/cart/open">Cart</a>
+          <a class="nav-link active" aria-current="page" href="/cart">Cart</a>
+          <a class="nav-link active" aria-current="page" href="/product" th:action="@{'/product'}">All products</a>
+          <div sec:authorize="hasRole('ADMIN')">
+            <a class="nav-link active" aria-current="page" href="/admin/panel">Admin panel</a>
+          </div>
+
         </div>
       </div>
       <form class="form-inline" method="get" th:action="@{'/product'}">
         <input name="name" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Profile
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">My Profile</a>
-          <a class="dropdown-item" href="#">Settings</a>
-            <form class="dropdown-item" th:action="@{/logout}" method="post">
-              <input class="btn" type="submit" value="Logout" />
-            </form>
-        </div>
-      </div>
+      <form class="form-inline" th:action="@{/logout}" method="post">
+        <input class="btn" type="submit" value="Logout"/>
+      </form>
     </div>
   </nav>
 </header>

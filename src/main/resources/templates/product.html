@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <html lang="en">
 <head>
   <title>Categories</title>
@@ -106,13 +107,18 @@
       <img class="card-img" th:src="@{'/images/' + ${product.getImageName()}}">
       <h3 class="card-title" th:text="${product.getName()}"></h3>
       <h5 class="card-description" th:text="${product.getDescription()}"></h5>
-      <h2 class="card-price" th:text="${product.getPrice()}"></h2>
+      <h2 class="card-price" th:text="${product.getPrice()+'$'}"></h2>
       <form th:method="POST" th:action="@{/cart/add(product_id=${product.getId()}, name=${product.getName()})}" th:object="${person}">
         <button class="buy-button" onclick="productAddedToShoppingCartMsg()">Buy Now</button>
       </form>
-      <a href="/cart/open">
+      <a href="/cart">
         <button class="cart-button">Go to Cart</button>
       </a>
+      <div sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{'/product/edit/'+${product.id}}">
+          <button class="cart-button">Edit</button>
+        </a>
+      </div>
     </div>
   </div>
 </div>

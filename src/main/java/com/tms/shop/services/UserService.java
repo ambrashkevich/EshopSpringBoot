@@ -1,9 +1,8 @@
 package com.tms.shop.services;
 
+import com.tms.shop.dto.UserDto;
 import com.tms.shop.entities.User;
-import com.tms.shop.exceptions.AuthorizationException;
 import java.util.List;
-import org.springframework.web.servlet.ModelAndView;
 
 public interface UserService {
 
@@ -13,5 +12,5 @@ public interface UserService {
 
     void registration(User user);
 
-    void edit(User user);
+    void edit(UserDto user);
 }
