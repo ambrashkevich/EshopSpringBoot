@@ -26,8 +26,8 @@ public class Order extends BaseEntity implements Serializable {
 
     @Column(name = "PRICE")
     private int price;
-    @Column(name = "DATE")
-    private Date date;
+    //@Column(name = "DATE")
+    //private Date date;
     @ManyToOne
     private User user;
     @ManyToMany

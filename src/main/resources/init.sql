@@ -37,7 +37,7 @@ create table if not exists users
     surname  varchar(45)    not null,
     email    varchar(200)   not null,
     password varchar   not null,
-    role     varchar(10)    not null
+    role     smallint  not null
     );
 alter table users
     owner to postgres;
@@ -54,7 +54,7 @@ drop table if exists orders;
 create table if not exists orders
 (
     id      serial primary key,
-    date    timestamp not null,
+    /*date    timestamp not null,*/
     price   int       not null,
     user_id int       not null
 );
@@ -143,9 +143,7 @@ INSERT INTO products(id, name, description, price, image_path, category_id)
 VALUES (12, 'Panasonic HC-V770', 'Разрешение видеосъёмки: Full HD, матрица: BSI MOS, электронная стабилизация: оптическая, количество пикселей при фотосъемке: 24 Мп, разрешение фотоснимка:6528x3672, емкость аккумулятора: 1940 мАч', 1100,'panasonic.jpg', 6);
 
 INSERT INTO users (name, surname, email, password,role)
-VALUES ('Vadim', 'Vadimovich', 'vadim@mail.ru', '123123', null),
-       ('Max', 'Ivanov', 'max@bk.ru', '$2a$10$7mwFb6pqvFu8bHBANuj4zO0rmQ3TDfYtmFUFf5HXCxoU.0tTcyCy.',null),
-       ('Anton', 'Antonov','anton@list.ru', '11111111',null);
+VALUES ('Vadim', 'Vadimovich', 'vadim@mail.ru', '123123', 1);
 
 INSERT INTO products (id, name, description, price, image_path, category_id)
 VALUES (13, 'Honor 70', 'Android 12, экран 6.1\" OLED (3840x2160) 60 Гц, Qualcomm Snapdragon 778G+, ОЗУ 6 ГБ, память 128 ГБ, камера 12 Мп, 1 SIM (nano-SIM/eSIM), влагозащита IP68', 1100, 'honor.jpg', 1);
